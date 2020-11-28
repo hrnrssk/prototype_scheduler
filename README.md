@@ -6,10 +6,15 @@
     チームメンバーが作業者と装置の予定を考慮しながら試作品の予定を組めます
 
 ### コンセプト
-    予定組みに柔軟性が必要な【試作品】の生産スケジュールが作れます
+    スケジュール調整の手間が省けます
 
 ### バージョン
-    Ruby 2.5.4 Rails 5.2.4
+    Ruby 2.5.4    Rails 5.2.4
+
+### 使用予定技術
+  * devise: ログイン認証
+  * ransack: 試作品検索
+  * AWS: ウェブサーバー
 
 ### 機能一覧
 * サインイン画面
@@ -58,11 +63,7 @@ https://docs.google.com/spreadsheets/d/1bp1BmEXKilqHE6iHaoCNJ2_QqSBPjn5JrWpSlK03
 https://docs.google.com/spreadsheets/d/1bp1BmEXKilqHE6iHaoCNJ2_QqSBPjn5JrWpSlK03K_w/edit#gid=0
 
 ### 画面遷移図
-https://cacoo.com/diagrams/AvzKM7N6yGzLTW0K/94C25?reload_rt=1606440743783_0
+https://docs.google.com/spreadsheets/d/1bp1BmEXKilqHE6iHaoCNJ2_QqSBPjn5JrWpSlK03K_w/edit#gid=0
 
 ### 画面ワイヤーフレーム
-https://cacoo.com/diagrams/AvzKM7N6yGzLTW0K/94C25?reload_rt=1606440743783_0
-
-### 使用予定Gem
-  * devise
-  * ransack
+https://docs.google.com/spreadsheets/d/1bp1BmEXKilqHE6iHaoCNJ2_QqSBPjn5JrWpSlK03K_w/edit#gid=0
