@@ -1,0 +1,13 @@
+<h3>以下の内容で、登録する。</h3>
+<%= form_with(model: @prototype, local: true) do |f| %>
+  <%= f.hidden_field :order_number %>
+  <%= f.hidden_field :customer %>
+  <%= f.hidden_field :name %>
+  <%= f.hidden_field :delivery_date %>
+  <p>注文番号:<%= @prototype.order_number %></p>
+  <p>得意先:<%= @prototype.customer %></p>
+  <p>品名:<%= @prototype.name %></p>
+  <p>納期:<%= @prototype.delivery_date %></p>
+  <%= form.submit  "登録する" %>
+  <%= form.submit "戻る", name: 'back' %>
+<% end %>
