@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  oder_number: MyString
+  customer: MyString
+  name: MyString
+  delivery_date: 2020-12-12
+
+two:
+  oder_number: MyString
+  customer: MyString
+  name: MyString
+  delivery_date: 2020-12-12
