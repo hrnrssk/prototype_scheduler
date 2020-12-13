@@ -1,5 +1,4 @@
 <h1>試作品情報一覧</h1>
-<p><%= notice %></p>
 <table>
   <tr>
     <th>注文番号</th>
@@ -17,9 +16,9 @@
     <td><%= prototype.delivery_date %></td>
     <td><%= "" %></td>
     <td><%= "" %></td>
-    <td><%= link_to '進捗を確認', prototype_path(prototype.id) %></td>
-    <td><%= link_to "予定を編集", edit_prototype_path(prototype.id), data: { confirm: '本当に編集していいですか？' } %></td>
-    <td><%= link_to '試作品を削除', prototype_path(prototype.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to '進捗確認', prototype_path(prototype.id) %></td>
+    <td><%= link_to "情報編集", edit_prototype_path(prototype.id) %></td>
+    <td><%= link_to '削除', prototype_path(prototype.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>

@@ -1,6 +1,6 @@
 class PrototypesController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  before_action :set_prototype, only: [:show, :edit, :update]
+  before_action :set_prototype, only: [:show, :edit, :update, :destroy]
 
   def index
     @prototypes = Prototype.all
@@ -15,7 +15,7 @@ class PrototypesController < ApplicationController
     if params[:back]
       render :new
     else
-      if @blog.save
+      if @prototype.save
         redirect_to new_prototype_path, notice: "試作品を登録しました"
       else
         render :new
@@ -38,6 +38,7 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
+    binding.irb
     @prototype.destroy
     redirect_to prototypes_path, notice:"試作品を削除しました"
   end
@@ -49,7 +50,7 @@ class PrototypesController < ApplicationController
 
   private
   def prototype_params
-    params.require(:prototype).permit(:oder_number, :customer, :name, :delivery_date)
+    params.require(:prototype).permit(:order_number, :customer, :name, :delivery_date)
   end
 
   def set_prototype
