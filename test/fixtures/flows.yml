@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prototype_id: 1
+  processing_id: 1
+  scheduled_starting_time: 2020-12-13 13:39:22
+  scheduled_ending_time: 2020-12-13 13:39:22
+  ending_time: 2020-12-13 13:39:22
+
+two:
+  prototype_id: 1
+  processing_id: 1
+  scheduled_starting_time: 2020-12-13 13:39:22
+  scheduled_ending_time: 2020-12-13 13:39:22
+  ending_time: 2020-12-13 13:39:22

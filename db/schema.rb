@@ -10,10 +10,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_13_021410) do
+ActiveRecord::Schema.define(version: 2020_12_13_043922) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "equipment", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "flows", force: :cascade do |t|
+    t.integer "prototype_id"
+    t.integer "processing_id"
+    t.datetime "scheduled_starting_time"
+    t.datetime "scheduled_ending_time"
+    t.datetime "ending_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "processings", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "comment"
+    t.time "time_required", null: false
+    t.bigint "equipment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipment_id"], name: "index_processings_on_equipment_id"
+  end
 
   create_table "prototypes", force: :cascade do |t|
     t.string "order_number", null: false
@@ -41,4 +68,12 @@ ActiveRecord::Schema.define(version: 2020_12_13_021410) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "workings", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "processing_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_foreign_key "processings", "equipment"
 end
