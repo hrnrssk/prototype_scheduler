@@ -1,0 +1,16 @@
+<h1>装置一覧</h1>
+<table>
+  <tr>
+    <th>装置名</th>
+    <th>コメント</th>
+  </tr>
+<% @equipments.each do |equipment| %>
+  <tr>
+    <td><%= equipment.name %></td>
+    <td><%= equipment.comment %></td>
+    <td><%= link_to "編集", edit_equipment_path(equipment.id) %></td>
+    <td><%= link_to '削除', equipment_path(equipment.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to '装置登録へ', new_equipment_path %>

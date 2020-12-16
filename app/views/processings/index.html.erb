@@ -1,0 +1,20 @@
+<h1>工程一覧</h1>
+<table>
+  <tr>
+    <th>工程名</th>
+    <th>装置名</th>
+    <th>所要時間</th>
+    <th>コメント</th>
+  </tr>
+<% @processings.each do |processing| %>
+  <tr>
+    <td><%= processing.name %></td>
+    <td><%= processing.equipment.name %></td>
+    <td><%= processing.time_required.strftime('%H:%M') %></td>
+    <td><%= processing.comment %></td>
+    <td><%= link_to "編集", edit_processing_path(processing.id) %></td>
+    <td><%= link_to '削除', processing_path(processing.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+</table>
+<%= link_to '工程登録へ', new_processing_path %>

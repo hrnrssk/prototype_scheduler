@@ -38,7 +38,6 @@ class PrototypesController < ApplicationController
   end
 
   def destroy
-    binding.irb
     @prototype.destroy
     redirect_to prototypes_path, notice:"試作品を削除しました"
   end

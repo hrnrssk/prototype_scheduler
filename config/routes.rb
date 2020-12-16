@@ -12,13 +12,25 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :workings, only: [:create, :destroy]
-
   resources :flows do
     collection do
       post :confirm
     end
   end
+
+  resources :processings do
+    collection do
+      post :confirm
+    end
+  end
+
+  resources :equipments do
+    collection do
+      post :confirm
+    end
+  end
+
+  resources :workings, only: [:create, :destroy]
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
