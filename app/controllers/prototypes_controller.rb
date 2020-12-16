@@ -4,6 +4,8 @@ class PrototypesController < ApplicationController
 
   def index
     @prototypes = Prototype.all
+    @q = Prototype.ransack(params[:q])
+    @prototypes = @q.result(distinct: true)
   end
   
   def new

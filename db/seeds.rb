@@ -1,7 +1,10 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+Prototype.create(order_number: '00000001',customer: 'アーカム財団', name: 'スプリガン', delivery_date: '2020/12/10')
+Prototype.create(order_number: '00000002',customer: '朱沢コンツェルン', name: '刃牙', delivery_date: '2020/12/01')
+Prototype.create(order_number: '00000003',customer: '秋本貿易', name: 'こち亀', delivery_date: '2020/12/05')
+Prototype.create(order_number: '00000004',customer: 'アンブレラ社', name: 'バイオハザード', delivery_date: '2020/12/21')
+Prototype.create(order_number: '00000005',customer: '帝愛', name: 'カイジ', delivery_date: '2020/12/24')
+Prototype.create(order_number: '00000006',customer: '大沢家政婦紹介所', name: '家政婦は見た', delivery_date: '2020/12/06')
+Prototype.create(order_number: '00000007',customer: 'オムニ社', name: 'ロボコップ', delivery_date: '2020/12/12')
+Prototype.create(order_number: '00000008',customer: 'サイガグループ', name: 'からくりサーカス', delivery_date: '2020/12/14')
+Prototype.create(order_number: '00000009',customer: 'サイバーダイン', name: 'ターミネーター', delivery_date: '2020/12/30')
+Prototype.create(order_number: '00000010',customer: 'SPW財団', name: 'ジョジョ', delivery_date: '2020/12/25')

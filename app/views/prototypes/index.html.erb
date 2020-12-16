@@ -1,12 +1,20 @@
 <h1>試作品一覧</h1>
+
+<%= search_form_for @q do |f| %>
+  <%= f.label :order_number_or_name, "注文番号/品名検索：" %>
+  <%= f.search_field :order_number_or_name_cont %>
+
+  <%= f.submit "検索" %>
+<% end %>
+
 <table>
   <tr>
-    <th>注文番号</th>
-    <th>得意先</th>
-    <th>品名</th>
-    <th>納期</th>
-    <th>工程終了予定</th>
-    <th>猶予日数</th>
+    <th><%= sort_link(@q, :order_number, "注文番号") %></th>
+    <th><%= sort_link(@q, :customer, "得意先") %></th>
+    <th><%= sort_link(@q, :name, "品名") %></th>
+    <th><%= sort_link(@q, :delivery_date, "納期") %></th>
+    <th><%= sort_link(@q, :scheduled_to_end, "工程終了予定") %></th>
+    <th><%= sort_link(@q, :days_of_grace, "猶予日数") %></th>
   </tr>
 <% @prototypes.each do |prototype| %>
   <tr>
