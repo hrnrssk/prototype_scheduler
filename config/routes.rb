@@ -4,30 +4,27 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
+  resources :users, :only => [:show, :edit, :update] do
+    get :workings, on: :collection
+  end
+
   root 'prototypes#index'
 
   resources :prototypes do
-    collection do
-      post :confirm
-    end
+    post :confirm, on: :collection
   end
 
   resources :flows do
-    collection do
-      post :confirm
-    end
+    post :confirm, on: :collection
   end
 
   resources :processings do
-    collection do
-      post :confirm
-    end
+    resource :workings, only: [:create, :destroy]
+    post :confirm, on: :collection
   end
 
   resources :equipments do
-    collection do
-      post :confirm
-    end
+    post :confirm, on: :collection
   end
 
   resources :workings, only: [:create, :destroy]

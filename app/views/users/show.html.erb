@@ -1,0 +1,4 @@
+<p>MyPage <%= @user.name %></p>
+<% @user.working_processings.each do |working| %>
+  <p>担当工程： <%= working.name %></p>
+<% end %>
