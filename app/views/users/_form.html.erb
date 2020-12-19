@@ -1,0 +1,24 @@
+<%= form_with(model: @user, local: true ,url: user_choose_new_or_edit ) do |f| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @user.errors.count %>件のエラーがあります。</h2>
+      <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="user_name">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <%= f.fields_for :workings do |f| %>
+    <div class="working_name">
+      <%= f.label :working_name %>
+      <%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %>
+    </div>
+  <% end %>
+  <%= f.submit %>
+<% end %>
