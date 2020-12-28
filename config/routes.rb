@@ -12,11 +12,14 @@ Rails.application.routes.draw do
 
   resources :prototypes do
     post :confirm, on: :collection
+    resources :flows do
+      post :confirm, on: :collection
+    end
   end
 
-  resources :flows do
-    post :confirm, on: :collection
-  end
+  # resources :flows do
+  #   post :confirm, on: :collection
+  # end
 
   resources :processings do
     resource :workings, only: [:create, :destroy]
