@@ -12,6 +12,7 @@ class FlowsController < ApplicationController
     # @flow = Flow.new(flow_params.merge(prototype_id: prototype_id))
     @flow = Flow.new
     @flow.prototype_id = params[:prototype_id]
+    binding.pry
   end
 
   def create

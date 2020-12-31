@@ -30,7 +30,11 @@ Rails.application.routes.draw do
     post :confirm, on: :collection
   end
 
-  resources :workings, only: [:create, :destroy]
+  resources :workings, only: [:new, :create, :destroy] do
+    collection do
+      get 'get_users' # /workings/get_users
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"
