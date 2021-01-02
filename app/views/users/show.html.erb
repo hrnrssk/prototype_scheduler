@@ -1,4 +1,11 @@
 <p>MyPage <%= @user.name %></p>
-<% @user.working_processings.each do |working| %>
-  <p>担当工程： <%= working.name %></p>
+
+<% @user.working_processings.each_with_index do |working, i| %>
+  <table>
+    <tr>
+      <td>担当工程<%= "#{i+1}" %>： <%= working.name %></td>
+      <td><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    </tr>
+  </table>
 <% end %>
+<%= link_to 'マイページ編集', edit_user_path(current_user) %>
