@@ -68,7 +68,9 @@ class FlowsController < ApplicationController
     # params.permit(flows: {workings: [:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number]})
     # params.permit(:scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, processings_attributes:[:id, :processing_id])
     # params.require(:flow).permit(:scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, workings_attributes:[:id, :processing_id])
-    params.require(:flow).permit(flow: {})
+    # params.require(:flow).permit(flow: {workings_attributes:[:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number]})
+    # params.require(:flow).permit(flow: {})
+    params.require(:flow).require(:workings).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number)
     # params.permit(flow: {})
   end
 
