@@ -17,7 +17,6 @@ class FlowsController < ApplicationController
   def create
     @flow = Flow.new(flow_params)
     # @flow = Flow.new
-    # binding.pry
     # prototype_id = params[:id]
     # @flow = Flow.new(flow_params.merge(prototype_id: prototype_id))
     # @flow.processings.build
@@ -70,7 +69,12 @@ class FlowsController < ApplicationController
     # params.require(:flow).permit(:scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, workings_attributes:[:id, :processing_id])
     # params.require(:flow).permit(flow: {workings_attributes:[:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number]})
     # params.require(:flow).permit(flow: {})
-    params.require(:flow).require(:workings).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number)
+    # params.require(:processing).permit(:user_id )
+    # params.require(:flow).require(:workings).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id)
+    # params.require(:flow).permit(:prototype_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id, workings: [:processing_id])
+    params.require(:flow).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id)
+    # params.require(:flow).require(:workings).require(:processing).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id)
+    # params.require(:flow).require(:workings).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number) && params.require(:processing).permit(:user_id )
     # params.permit(flow: {})
   end
 

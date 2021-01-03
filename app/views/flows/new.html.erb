@@ -27,18 +27,23 @@
   </tr>
 
 
-  <%= f.fields_for :workings do |w| %> 
+<%
+=begin%>
+ <%= f.fields_for :workings do |w| %>  
+<% end %> 
+<%
+=end%>
 
     <tr>
-      <td><div class="flow_prototype"><%= w.text_field :prototype_id %></div></td>
-      <td><div class="flow_number"><%= w.text_field :number %></div></td>
-      <td><div class="processing_name"><%= w.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></div></td>
+      <td><div class="flow_prototype"><%= f.text_field :prototype_id %></div></td>
+      <td><div class="flow_number"><%= f.text_field :number %></div></td>
+      <td><div class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></div></td>
       <td><div class="worker"><%= render partial: 'worker', locals: {processing_id: Processing.first.id} %></div></td>
-      <td><div class="scheduled_starting_time"><%= w.datetime_field :scheduled_starting_time, class: 'form-control' %></div></td>
-      <td><div class="scheduled_ending_time"><%= w.datetime_field :scheduled_ending_time, class: 'form-control' %></div></td>
-      <td><div class="ending_time"><%= w.datetime_field :ending_time, class: 'form-control' %></div></td>
+      <td><div class="scheduled_starting_time"><%= f.datetime_field :scheduled_starting_time, class: 'form-control' %></div></td>
+      <td><div class="scheduled_ending_time"><%= f.datetime_field :scheduled_ending_time, class: 'form-control' %></div></td>
+      <td><div class="ending_time"><%= f.datetime_field :ending_time, class: 'form-control' %></div></td>
     </tr>
 
   <%= f.submit %>
-  <% end %>
+
 <% end %>

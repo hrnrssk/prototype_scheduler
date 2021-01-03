@@ -1,1 +1,1 @@
-<%= collection_select :processing, :user_id, Processing.find(processing_id).working_users.distinct, :id, :name, :prompt => "作業者を選択" %>
+<%= collection_select :flow, :user_id, Processing.find(processing_id).working_users.distinct, :id, :name, :prompt => "作業者を選択" %>
