@@ -13,8 +13,8 @@
     <th><%= sort_link(@q, :customer, "得意先") %></th>
     <th><%= sort_link(@q, :name, "品名") %></th>
     <th><%= sort_link(@q, :delivery_date, "納期") %></th>
-    <th><%= sort_link(@q, :scheduled_to_end, "完了予定") %></th>
-    <th><%= sort_link(@q, :days_of_grace, "猶予日数") %></th>
+    <th><%= sort_link(@q, :scheduled_ending_time, "完了予定") %></th>
+    <th><%= sort_link(@q, :delivery_date, "猶予日数") %></th>
   </tr>
 <% @prototypes.each do |prototype| %>
   <tr>
