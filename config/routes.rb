@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, :only => [:show, :edit, :update, :destroy] do
+  resources :users, :only => [:new, :create, :show, :edit, :update, :destroy] do
     get :workings, on: :collection
   end
 

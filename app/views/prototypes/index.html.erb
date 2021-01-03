@@ -21,7 +21,11 @@
     <td><%= prototype.customer %></td>
     <td><%= prototype.name %></td>
     <td><%= prototype.delivery_date %></td>
-    <td><%= "" %></td>
+    <% if @flows.where(prototype_id: prototype.id).maximum(:scheduled_ending_time) == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= @flows.where(prototype_id: prototype.id).maximum(:scheduled_ending_time).strftime("%Y-%m-%d") %></td>
+    <% end %>
     <td><%= "" %></td>
     <td><%= link_to '工程フロー', prototype_flow_path(prototype.id, prototype.id) %></td>
     <td><%= link_to "情報編集", edit_prototype_path(prototype.id) %></td>
@@ -30,3 +34,41 @@
 <% end %>
 </table>
 <%= link_to '試作品登録へ', new_prototype_path %>
+
+
+<h1>工程フロー詳細</h1>
+<table>
+  <tr>
+    <th>試作品No.</th>
+    <th>工程No.</th>
+    <th>工程名</th>
+    <th>所要時間</th>
+    <th>作業者</th>
+    <th>開始予定</th>
+    <th>終了予定</th>
+    <th>終了実績</th> 
+  </tr>
+<% @flows.each do |flow| %>
+  <tr>
+    <td><%= flow.prototype_id %></td>
+    <td><%= flow.number %></td>
+    <td><%= flow.processing.name %></td>
+    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.scheduled_starting_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.scheduled_ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+  </tr>
+<% end %>

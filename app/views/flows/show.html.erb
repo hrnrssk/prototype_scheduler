@@ -18,9 +18,21 @@
     <td><%= flow.processing.name %></td>
     <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
     <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-    <td><%= flow.scheduled_starting_time %></td>
-    <td><%= flow.scheduled_ending_time %></td>
-    <td><%= flow.ending_time %></td>
+    <% if flow.scheduled_starting_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.scheduled_ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
     <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
     <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>

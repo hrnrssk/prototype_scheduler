@@ -32,7 +32,7 @@ class FlowsController < ApplicationController
   end
 
   def show
-    @flows = Flow.where(prototype_id: params[:id])
+    @flows = Flow.where(prototype_id: params[:id]).order(number: :ASC)
   end
 
   def edit

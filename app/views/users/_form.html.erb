@@ -26,11 +26,6 @@
             <%= w.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %>
           </div>
         </td>
-        <td>
-          <div class="flow_number">
-            <%= w.text_field :processing_id %>
-          </div>
-        </td>
       </tr>
     <% end %>
   </table>
