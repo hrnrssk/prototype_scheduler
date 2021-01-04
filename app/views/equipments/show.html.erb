@@ -1,16 +1,10 @@
-<h1>ユーザー情報</h1>
-<%= link_to '担当工程編集', edit_user_path(current_user) %>
+<h1>装置詳細画面</h1>
+<p>装置名: <%= @equipment.name %></p>
+<p>コメント: <%= @equipment.comment %></p>
+<%= link_to "装置一覧", equipments_path %>
 
-<% @user.working_processings.each_with_index do |working, i| %>
-  <table>
-    <tr>
-      <td>担当工程<%= "#{i+1}" %>： <%= working.name %></td>
-      <td><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-    </tr>
-  </table>
-<% end %>
 
-<h1>個人スケジュール</h1>
+<h1>装置スケジュール</h1>
 <table>
   <tr>
     <th>注文番号</th>
@@ -47,3 +41,4 @@
   </tr>
   
 <% end %>
+

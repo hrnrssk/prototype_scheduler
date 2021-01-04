@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def show
+    @flows = Flow.all.where(user_id: current_user.id)
   end
 
   def edit

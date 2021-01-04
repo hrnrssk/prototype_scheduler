@@ -12,9 +12,11 @@
   <body>
     <% if user_signed_in? %>
       <%= link_to "試作品一覧", prototypes_path %>
-      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-      <p>ユーザー名：<%= current_user.name %></p>
-      <%= link_to 'マイページ', user_path(current_user) %>
+      <%= link_to "工程一覧", processings_path %>
+      <%= link_to "装置一覧", equipments_path %>
+      <%= link_to "ユーザー情報", user_path(current_user) %>
+      <%= link_to "ログアウト", destroy_user_session_path, method: :delete %><br>
+      USER NAME： <%= current_user.name %>
       </div>
     <% else %>
       <%= link_to "新規登録", new_user_registration_path %>

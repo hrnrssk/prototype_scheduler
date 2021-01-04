@@ -1,5 +1,6 @@
 <% require "date" %>
 <h1>試作品一覧</h1>
+<%= link_to "試作品登録", new_prototype_path %>
 <%= search_form_for @q do |f| %>
   <%= f.label :order_number_or_name, "注文番号/品名検索：" %>
   <%= f.search_field :order_number_or_name_cont %>
@@ -34,42 +35,3 @@
   </tr>
 <% end %>
 </table>
-<%= link_to '試作品登録へ', new_prototype_path %>
-
-
-<h1>工程フロー詳細</h1>
-<table>
-  <tr>
-    <th>試作品No.</th>
-    <th>工程No.</th>
-    <th>工程名</th>
-    <th>所要時間</th>
-    <th>作業者</th>
-    <th>開始予定</th>
-    <th>終了予定</th>
-    <th>終了実績</th> 
-  </tr>
-<% @flows.each do |flow| %>
-  <tr>
-    <td><%= flow.prototype_id %></td>
-    <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-    <% if flow.scheduled_starting_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <% if flow.scheduled_ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <% if flow.ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-  </tr>
-<% end %>

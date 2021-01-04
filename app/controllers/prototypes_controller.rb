@@ -7,7 +7,6 @@ class PrototypesController < ApplicationController
     @q = Prototype.ransack(params[:q])
     @prototypes = @q.result(distinct: true)
     @flows = Flow.all
-    # @flows.where(prototype.id).maximum(:ending_time)
   end
   
   def new

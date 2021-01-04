@@ -24,6 +24,8 @@ class EquipmentsController < ApplicationController
   end
 
   def show
+    # @flows = Flow.all.where(processing_id: params[:id])
+    @flows = Flow.all.where(processing_id: @equipment.processings.ids)
   end
 
   def edit
