@@ -23,3 +23,14 @@ $(document).on 'change', '#flow_processing_id', ->
   ).done (data) ->
     $('.equipment_schedule').html(data)
 
+
+$(document).on 'change', '#flow_user_id', ->
+  $.ajax(
+    type: 'GET'
+    url: '/processings/get_user_schedule'
+    data: {
+      user_id: $(this).val()
+    }
+  ).done (data) ->
+    $('.user_schedule').html(data)
+

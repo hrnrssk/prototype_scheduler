@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     post :confirm, on: :collection
     collection do
       get 'get_equipment_schedule' # /processings/get_equipment_schedule
+      get 'get_user_schedule' # /processings/get_user_schedule
     end
   end
 

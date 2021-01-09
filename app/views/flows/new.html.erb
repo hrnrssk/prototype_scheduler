@@ -80,11 +80,24 @@
 </table>
 </div>
 
+<div class="row">
+  <div class="col-sm-6">
+    <table>
+      <tr>
+        <td>
+          <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
+        </td>
+      </tr>
+    </table>
+  </div>
 
-<table>
-  <tr>
-    <td>
-      <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
-    </td>
-  </tr>
-</table>
+  <div class="col-sm-2">
+    <table>
+      <tr>
+        <td>
+          <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
