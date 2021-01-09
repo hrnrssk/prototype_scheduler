@@ -1,4 +1,4 @@
-<h1>ユーザー情報</h1>
+<h5>ユーザー情報</h5>
 <%= link_to '担当工程編集', edit_user_path(current_user) %>
 
 <% @user.working_processings.each_with_index do |working, i| %>
@@ -10,7 +10,7 @@
   </table>
 <% end %>
 
-<h1>個人スケジュール</h1>
+<h5>個人スケジュール</h5>
 <table>
   <tr>
     <th>注文番号</th>

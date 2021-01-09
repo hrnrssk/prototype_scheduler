@@ -12,6 +12,7 @@ class FlowsController < ApplicationController
     # @flow = Flow.new(flow_params.merge(prototype_id: prototype_id))
     @flow = Flow.new
     @flow.prototype_id = params[:prototype_id]
+    @flows = Flow.where(prototype_id: params[:prototype_id]).order(number: :ASC)
   end
 
   def create
@@ -33,6 +34,7 @@ class FlowsController < ApplicationController
 
   def show
     @flows = Flow.where(prototype_id: params[:id]).order(number: :ASC)
+    # @flow.prototype_id = params[:prototype_id]
   end
 
   def edit
@@ -40,6 +42,7 @@ class FlowsController < ApplicationController
     # @flows = Flow.where(prototype_id: params[:id])
     @flow = Flow.find(params[:id])
     # @flow.processings.build
+    @flows = Flow.where(prototype_id: params[:prototype_id]).order(number: :ASC)
   end
 
   def update

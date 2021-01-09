@@ -1,5 +1,5 @@
 <% require "date" %>
-<h1>試作品一覧</h1>
+<h5>試作品一覧</h5>
 <%= link_to "試作品登録", new_prototype_path %>
 <%= search_form_for @q do |f| %>
   <%= f.label :order_number_or_name, "注文番号/品名検索：" %>
@@ -29,7 +29,7 @@
       <td><%= @flows.where(prototype_id: prototype.id).maximum(:scheduled_ending_time).strftime("%Y-%m-%d") %></td>
     <% end %>
     <td><%= (prototype.delivery_date - Date.today).to_i %></td>
-    <td><%= link_to '工程フロー', prototype_flow_path(prototype.id, prototype.id) %></td>
+    <td><%= link_to '工程フロー', new_prototype_flow_path(prototype.id, prototype.id) %></td>
     <td><%= link_to "情報編集", edit_prototype_path(prototype.id) %></td>
     <td><%= link_to '削除', prototype_path(prototype.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
