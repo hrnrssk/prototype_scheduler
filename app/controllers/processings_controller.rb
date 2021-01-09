@@ -38,13 +38,20 @@ class ProcessingsController < ApplicationController
   end
 
   def destroy
-      @processing.destroy
-      redirect_to processings_path, notice:"工程を削除しました"
+    @processing.destroy
+    redirect_to processings_path, notice:"工程を削除しました"
   end
 
   def confirm
-      @processing = Processing.new(processing_params)
-      render :new if @processing.invalid?
+    @processing = Processing.new(processing_params)
+    render :new if @processing.invalid?
+  end
+
+  def get_equipment_schedule
+    # binding.pry
+    @processing = Processing.find(params[:processing_id])
+    @flows = Flow.all.where(processing_id: params[:processing_id])
+    render partial: 'equipment_schedule', locals: {processing_id: params[:processing_id]}
   end
 
   private

@@ -76,6 +76,15 @@
     <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
     <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
-  </div>
-
 <% end %>
+</table>
+</div>
+
+
+<table>
+  <tr>
+    <td>
+      <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
+    </td>
+  </tr>
+</table>

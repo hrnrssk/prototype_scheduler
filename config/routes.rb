@@ -24,6 +24,9 @@ Rails.application.routes.draw do
   resources :processings do
     resource :workings, only: [:create, :destroy]
     post :confirm, on: :collection
+    collection do
+      get 'get_equipment_schedule' # /processings/get_equipment_schedule
+    end
   end
 
   resources :equipments do
