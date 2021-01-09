@@ -6,4 +6,5 @@ class Processing < ApplicationRecord
   has_many :working_users, through: :workings, source: :user
   has_many :flows, dependent: :destroy
   has_many :flow_prototypes, through: :flows, source: :prototype
+  accepts_nested_attributes_for :flows, allow_destroy: true
 end

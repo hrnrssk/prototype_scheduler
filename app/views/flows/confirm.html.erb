@@ -1,0 +1,21 @@
+<h5>以下の内容で、登録する。</h5>
+<%= form_with(model: @flow, local: true, url: prototype_flows_path ) do |f| %>
+  <%= f.hidden_field :prototype_id %>
+  <%= f.hidden_field :number %>
+  <%= f.hidden_field :processing_id %>
+  <%= f.hidden_field :time_required %>
+  <%= f.hidden_field :worker %>
+  <%= f.hidden_field :scheduled_starting_time %>
+  <%= f.hidden_field :scheduled_ending_time %>
+  <%= f.hidden_field :ending_time %>
+  <p>試作品No:<%= @flow.prototype_id %></p>
+  <p>工程No:<%= @flow.number %></p>
+  <p>工程名:<%= @flow.processing_id %></p>
+  <p>所要時間:<%=  %></p>
+  <p>作業者:<%=  %></p>
+  <p>開始予定:<%= @flow.scheduled_starting_time %></p>
+  <p>終了予定:<%= @flow.scheduled_ending_time %></p>
+  <p>終了実績:<%= @flow.ending_time %></p>
+  <%= f.submit  "登録する" %>
+  <%= f.submit "戻る", name: 'back' %>
+<% end %>

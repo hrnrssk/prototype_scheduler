@@ -1,4 +1,5 @@
-<h1>装置一覧</h1>
+<h5>装置一覧</h5>
+<%= link_to "装置登録", new_equipment_path %>
 <table>
   <tr>
     <th>装置名</th>
@@ -8,9 +9,9 @@
   <tr>
     <td><%= equipment.name %></td>
     <td><%= equipment.comment %></td>
+    <td><%= link_to "詳細", equipment_path(equipment.id) %></td>
     <td><%= link_to "編集", edit_equipment_path(equipment.id) %></td>
     <td><%= link_to '削除', equipment_path(equipment.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
 </table>
-<%= link_to '装置登録へ', new_equipment_path %>

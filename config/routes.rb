@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     sessions: 'users/sessions'
   }
 
-  resources :users, :only => [:show, :edit, :update] do
+  resources :users, :only => [:new, :create, :show, :edit, :update, :destroy] do
     get :workings, on: :collection
   end
 
@@ -12,11 +12,14 @@ Rails.application.routes.draw do
 
   resources :prototypes do
     post :confirm, on: :collection
+    resources :flows do
+      post :confirm, on: :collection
+    end
   end
 
-  resources :flows do
-    post :confirm, on: :collection
-  end
+  # resources :flows do
+  #   post :confirm, on: :collection
+  # end
 
   resources :processings do
     resource :workings, only: [:create, :destroy]
@@ -27,7 +30,11 @@ Rails.application.routes.draw do
     post :confirm, on: :collection
   end
 
-  resources :workings, only: [:create, :destroy]
+  resources :workings, only: [:new, :create, :destroy] do
+    collection do
+      get 'get_users' # /workings/get_users
+    end
+  end
 
   if Rails.env.development?
     mount LetterOpenerWeb::Engine, at: "/letter_opener"

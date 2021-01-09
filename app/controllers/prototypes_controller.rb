@@ -6,6 +6,7 @@ class PrototypesController < ApplicationController
     @prototypes = Prototype.all
     @q = Prototype.ransack(params[:q])
     @prototypes = @q.result(distinct: true)
+    @flows = Flow.all
   end
   
   def new

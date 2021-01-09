@@ -1,0 +1,80 @@
+<%= form_with(model: @flow, local: true ,url: flow_choose_new_or_edit ) do |f| %>
+  <% if @flow.present?%>
+    <% if @flow.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @flow.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @flow.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+  <h5>試作品スケジュール編集</h5>
+  <%= link_to "試作品一覧", prototypes_path %>
+  <%= link_to '工程フロー', prototype_flows_path %>
+  <table>
+    <tr>
+      <th>試作品No.</th>
+      <th>工程No.</th>
+      <th>工程名</th>
+      <th>作業者</th>
+      <th>開始予定</th>
+      <th>終了予定</th>
+      <th>終了実績</th>
+    </tr>
+
+    <tr>
+      <td><div class="flow_prototype"><%= f.text_field :prototype_id %></div></td>
+      <td><div class="flow_number"><%= f.text_field :number %></div></td>
+      <td><div class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></div></td>
+      <td><div class="worker"><%= render partial: 'worker', locals: {processing_id: Processing.first.id} %></div></td>
+      <td><div class="scheduled_starting_time"><%= f.datetime_field :scheduled_starting_time, class: 'form-control' %></div></td>
+      <td><div class="scheduled_ending_time"><%= f.datetime_field :scheduled_ending_time, class: 'form-control' %></div></td>
+      <td><div class="ending_time"><%= f.datetime_field :ending_time, class: 'form-control' %></div></td>
+    </tr>
+  </table>
+  <%= f.submit %>
+<% end %>
+
+
+<h5>工程フロー詳細</h5>
+<table>
+  <tr>
+    <th>試作品No.</th>
+    <th>工程No.</th>
+    <th>工程名</th>
+    <th>所要時間</th>
+    <th>作業者</th>
+    <th>開始予定</th>
+    <th>終了予定</th>
+    <th>終了実績</th> 
+  </tr>
+<% @flows.each do |flow| %>
+  <tr>
+    <td><%= flow.prototype_id %></td>
+    <td><%= flow.number %></td>
+    <td><%= flow.processing.name %></td>
+    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.scheduled_starting_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.scheduled_ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
+    <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>

@@ -1,0 +1,66 @@
+<%= form_with(model: @flow, local: true ,url: flow_choose_new_or_edit ) do |f| %>
+  <% if @flow.present?%>
+    <% if @flow.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= @flow.errors.count %>件のエラーがあります。</h2>
+        <ul>
+        <% @flow.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+  <% end %>
+
+<table>
+  <tr>
+    <th>工程No.</th>
+    <th>工程名</th>
+    <th>所要時間</th>
+    <th>作業者</th>
+    <th>開始予定</th>
+    <th>終了予定</th>
+    <th>終了実績</th>
+  </tr>
+
+    <%= f.fields_for :flow do |w| %>
+      <tr>
+        <td>
+          <div class="flow_number">
+            <%= w.text_field :number %>
+          </div>
+        </td>
+        <td>
+          <div class="processing_name">
+            <%= w.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %>
+          </div>
+        </td>
+        <td>
+          <div class="time_required">
+            <%=  %>
+          </div>
+        </td>
+        <td>
+          <div class="worker">
+            <%=  %>
+          </div>
+        </td>
+        <td>
+          <div class="scheduled_starting_time">
+            <%= w.datetime_field :scheduled_starting_time, class: 'form-control' %>
+          </div>
+        </td>
+        <td>
+          <div class="scheduled_ending_time">
+            <%= w.datetime_field :scheduled_ending_time, class: 'form-control' %>
+          </div>
+        </td>
+        <td>
+          <div class="ending_time">
+            <%= w.datetime_field :ending_time, class: 'form-control' %>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  <%= f.submit %>
+<% end %>

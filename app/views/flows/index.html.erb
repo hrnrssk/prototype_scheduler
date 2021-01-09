@@ -1,0 +1,28 @@
+<h5>工程フロー</h5>
+<%= link_to '工程追加', new_prototype_flow_path %>
+<table>
+  <tr>
+    <th>試作品No.</th>
+    <th>工程No.</th>
+    <th>工程名</th>
+    <th>所要時間</th>
+    <th>作業者</th>
+    <th>開始予定</th>
+    <th>終了予定</th>
+    <th>終了実績</th> 
+  </tr>
+<% @flows.each do |flow| %>
+  <tr>
+    <td><%= flow.prototype_id %></td>
+    <td><%= flow.number %></td>
+    <td><%= flow.processing.name %></td>
+    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <td>佐々木</td>
+    <td><%= flow.scheduled_starting_time %></td>
+    <td><%= flow.scheduled_ending_time %></td>
+    <td><%= flow.ending_time %></td>
+    <td><%= link_to '編集',edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
+    <td><%= link_to '削除',prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+  </tr>
+<% end %>
+
