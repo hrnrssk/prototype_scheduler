@@ -15,8 +15,16 @@
   <tr>
     <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
     <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.name %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <% end %>
     <% if flow.scheduled_starting_time == nil then %>
       <td><%= "" %></td>
     <% else %>

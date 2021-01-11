@@ -15,9 +15,21 @@
   <tr>
     <td><%= flow.prototype_id %></td>
     <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.name %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% end %>
     <% if flow.scheduled_starting_time == nil then %>
       <td><%= "" %></td>
     <% else %>

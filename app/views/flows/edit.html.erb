@@ -13,11 +13,8 @@
   <% end %>
 
   <h5>試作品スケジュール編集</h5>
-  <%= link_to "試作品一覧", prototypes_path %>
-  <%= link_to '工程フロー', prototype_flows_path %>
   <table>
     <tr>
-      <th>試作品No.</th>
       <th>工程No.</th>
       <th>工程名</th>
       <th>作業者</th>
@@ -27,7 +24,6 @@
     </tr>
 
     <tr>
-      <td><div class="flow_prototype"><%= f.text_field :prototype_id %></div></td>
       <td><div class="flow_number"><%= f.text_field :number %></div></td>
       <td><div class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></div></td>
       <td><div class="worker"><%= render partial: 'worker', locals: {processing_id: Processing.first.id} %></div></td>
@@ -41,24 +37,37 @@
 
 
 <h5>工程フロー詳細</h5>
+<div style="width:790px;height:150px;overflow:auto;">
 <table>
   <tr>
-    <th>試作品No.</th>
-    <th>工程No.</th>
-    <th>工程名</th>
-    <th>所要時間</th>
-    <th>作業者</th>
-    <th>開始予定</th>
-    <th>終了予定</th>
-    <th>終了実績</th> 
+    <th class="fixed01">工程No.</th>
+    <th class="fixed01">工程名</th>
+    <th class="fixed01">所要時間</th>
+    <th class="fixed01">作業者</th>
+    <th class="fixed01">開始予定</th>
+    <th class="fixed01">終了予定</th>
+    <th class="fixed01">終了実績</th> 
+    <th class="fixed01"></th>
+    <th class="fixed01"></th>
   </tr>
 <% @flows.each do |flow| %>
   <tr>
-    <td><%= flow.prototype_id %></td>
     <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.name %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% end %>
     <% if flow.scheduled_starting_time == nil then %>
       <td><%= "" %></td>
     <% else %>
@@ -78,3 +87,27 @@
     <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
   </tr>
 <% end %>
+</table>
+</div>
+
+<div class="row">
+  <div class="col-sm-6">
+    <table>
+      <tr>
+        <td>
+          <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-sm-6">
+    <table>
+      <tr>
+        <td>
+          <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>

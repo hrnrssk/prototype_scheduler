@@ -32,14 +32,12 @@
       <td><div class="ending_time"><%= f.datetime_field :ending_time, class: 'form-control' %></div></td>
     </tr>
   </table>
-
   <%= f.submit %>
-
 <% end %>
 
 
 <h5>工程フロー詳細</h5>
-  <div style="width:790px;height:150px;overflow:auto;">
+<div style="width:790px;height:150px;overflow:auto;">
 <table>
   <tr>
     <th class="fixed01">工程No.</th>
@@ -55,9 +53,21 @@
 <% @flows.each do |flow| %>
   <tr>
     <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.name %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <% end %>
+    <% if flow.processing == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% end %>
     <% if flow.scheduled_starting_time == nil then %>
       <td><%= "" %></td>
     <% else %>
