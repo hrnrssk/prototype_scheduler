@@ -1,23 +1,39 @@
 <% require "date" %>
-<h5>試作品一覧</h5>
-<%= link_to "試作品登録", new_prototype_path %>
-<%= search_form_for @q do |f| %>
-  <%= f.label :order_number_or_name, "注文番号/品名検索：" %>
-  <%= f.search_field :order_number_or_name_cont %>
+<div class="container">
+  <div class="row">
+      <h5 class="text-center border">試作品一覧</h5>
+  </div>
+  <div class="row my-1">
+    <div class="btn-group" role="group">
+      <%= link_to "試作品登録", new_prototype_path, class: "row justify-content-center btn btn-primary" %>
+    </div>
+  </div>
+  <%= search_form_for @q do |f| %>
+    <div class="row my-2">
+      <div class="col-3">
+      </div>
+      <div class="col-9">
+        <%= f.label :order_number_or_name, "注文番号/品名検索：" %>
+        <%= f.search_field :order_number_or_name_cont %>
+        <%= f.submit "検索" %>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <%= f.submit "検索" %>
-<% end %>
-
-<table>
-  <tr>
-    <th><%= sort_link(@q, :order_number, "注文番号") %></th>
-    <th><%= sort_link(@q, :customer, "得意先") %></th>
-    <th><%= sort_link(@q, :name, "品名") %></th>
-    <th><%= sort_link(@q, :delivery_date, "納期") %></th>
-    <th><%= sort_link(@q, :scheduled_ending_time, "完了予定") %></th>
-    <th><%= sort_link(@q, :delivery_date, "猶予日数") %></th>
+<table class="table table-striped">
+  <tr class="table-info">
+    <th scope="col"><%= sort_link(@q, :order_number, "注文番号") %></th>
+    <th scope="col"><%= sort_link(@q, :customer, "得意先") %></th>
+    <th scope="col"><%= sort_link(@q, :name, "品名") %></th>
+    <th scope="col"><%= sort_link(@q, :delivery_date, "納期") %></th>
+    <th scope="col"><%= sort_link(@q, :scheduled_ending_time, "完了予定") %></th>
+    <th scope="col"><%= sort_link(@q, :delivery_date, "猶予日数") %></th>
+    <th scope="col"><%= "" %></th>
+    <th scope="col"><%= "" %></th>
+    <th scope="col"><%= "" %></th>
   </tr>
-<% @prototypes.each do |prototype| %>
+  <% @prototypes.each do |prototype| %>
   <tr>
     <td><%= prototype.order_number %></td>
     <td><%= prototype.customer %></td>
@@ -28,14 +44,16 @@
     <% else %>
         <td><%= @flows.where(prototype_id: prototype.id).maximum(:scheduled_ending_time).strftime("%Y-%m-%d") %></td>
     <% end %>
-    <% if (prototype.delivery_date - Date.today).to_i <= 7 %>
+    <% if (prototype.delivery_date - Date.today).to_i <= 7 && 0 <= (prototype.delivery_date - Date.today).to_i %>
       <td class="bg-warning"><%= (prototype.delivery_date - Date.today).to_i %></td>
+    <% elsif (prototype.delivery_date - Date.today).to_i <= -1 %>
+      <td class="bg-danger box"><%= (prototype.delivery_date - Date.today).to_i %></td>
     <% else %>
       <td><%= (prototype.delivery_date - Date.today).to_i %></td>
     <% end %>
-    <td><%= link_to '工程フロー', new_prototype_flow_path(prototype.id, prototype.id) %></td>
-    <td><%= link_to "情報編集", edit_prototype_path(prototype.id) %></td>
-    <td><%= link_to '削除', prototype_path(prototype.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+    <td><%= link_to '工程フロー', new_prototype_flow_path(prototype.id, prototype.id), class: "btn btn-outline-primary btn-sm" %></td>
+    <td><%= link_to "情報編集", edit_prototype_path(prototype.id), class: "btn btn-outline-success btn-sm" %></td>
+    <td><%= link_to '削除', prototype_path(prototype.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm" %></td>
   </tr>
-<% end %>
+  <% end %>
 </table>

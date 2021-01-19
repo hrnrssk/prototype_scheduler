@@ -3,8 +3,9 @@ class FlowsController < ApplicationController
   before_action :set_flow, only: [:update]
 
   def index
-    @flows = Flow.all
+    # @flows = Flow.all
     # @flows = Flow.where(prototype_id: params[:id])
+    @flows = Flow.where(prototype_id: params[:prototype_id]).order(number: :ASC)
   end
 
   def new
