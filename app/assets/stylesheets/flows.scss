@@ -1,9 +1,32 @@
 // Place all the styles related to the flows controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.fixed01{
+.fixed01 {
     position: sticky;
     top: 0;
     color: #fff;
     background: rgb(0, 94, 255);
+}
+
+.table_header{
+    vertical-align: middle;
+    border: 1px solid rgb(0, 0, 0);
+}
+
+select {
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	margin-bottom: 20px;
+	padding: 3px 3px 3px 3px;
+	font-size: 93%;
+	line-height: 1.1em;
+	border-radius: 5px;
+	background-repeat: no-repeat;
+	background-size: 12px 10px;
+	background-position: right 10px center;
+}
+
+.title {
+	padding: 0 30px;
 }

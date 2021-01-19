@@ -1,20 +1,30 @@
-<h5>工程一覧</h5>
-<%= link_to "工程登録", new_processing_path %>
-<table>
-  <tr>
-    <th>工程名</th>
-    <th>装置名</th>
-    <th>所要時間</th>
-    <th>コメント</th>
-  </tr>
-<% @processings.each do |processing| %>
-  <tr>
-    <td><%= processing.name %></td>
-    <td><%= processing.equipment.name %></td>
-    <td><%= processing.time_required.strftime('%H:%M') %></td>
-    <td><%= processing.comment %></td>
-    <td><%= link_to "編集", edit_processing_path(processing.id) %></td>
-    <td><%= link_to '削除', processing_path(processing.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-  </tr>
-<% end %>
-</table>
+<div class="container">
+  <div class="row">
+    <h5 class="text-center border">工程一覧</h5>
+  </div>
+  <div class="row my-1">
+    <div class="btn-group" role="group">
+      <%= link_to "工程登録", new_processing_path, class: "row justify-content-center btn btn-primary" %>
+    </div>
+  </div>
+</div>
+    <table class="table table-striped">
+      <tr class="table-info">
+        <th class="col-2">工程名</th>
+        <th class="col-2">装置名</th>
+        <th class="col-2">所要時間</th>
+        <th class="col-4">コメント</th>
+        <th class="col-1"></th>
+        <th class="col-1"></th>
+      </tr>
+    <% @processings.each do |processing| %>
+      <tr>
+        <td><%= processing.name %></td>
+        <td><%= processing.equipment.name %></td>
+        <td><%= processing.time_required.strftime('%H:%M') %></td>
+        <td><%= processing.comment %></td>
+        <td><%= link_to "編集", edit_processing_path(processing.id), class: "btn btn-outline-success btn-sm" %></td>
+        <td><%= link_to '削除', processing_path(processing.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm" %></td>
+      </tr>
+    <% end %>
+    </table>

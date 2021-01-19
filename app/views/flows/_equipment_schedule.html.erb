@@ -1,0 +1,33 @@
+<% if @processing != nil %>
+<h5>装置スケジュール  装置名: <%= @processing.equipment.name %></h5>
+<div style="width:790px;height:150px;overflow:auto;">
+<table>
+  <tr>
+    <th class="fixed01">注文番号</th>
+    <th class="fixed01">工程No.</th>
+    <th class="fixed01">所要時間</th>
+    <th class="fixed01">作業者</th>
+    <th class="fixed01">開始予定</th>
+    <th class="fixed01">終了予定</th>
+  </tr>
+<% @flows.each do |flow| %>
+  <tr>
+    <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
+    <td><%= flow.number %></td>
+    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.scheduled_starting_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.scheduled_ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+  </tr>
+<% end %>
+</div>
+</table>
+<% end %>

@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
 
+  # devise_for :users, controllers: {
+  #   sessions: 'users/sessions'
+  # }
+
   devise_for :users, controllers: {
-    sessions: 'users/sessions'
+    registrations: 'users/registrations'
   }
 
   resources :users, :only => [:new, :create, :show, :edit, :update, :destroy] do
     get :workings, on: :collection
+  end
+
+  devise_scope :user do
+    post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
   root 'prototypes#index'
@@ -24,6 +32,10 @@ Rails.application.routes.draw do
   resources :processings do
     resource :workings, only: [:create, :destroy]
     post :confirm, on: :collection
+    collection do
+      get 'get_equipment_schedule' # /processings/get_equipment_schedule
+      get 'get_user_schedule' # /processings/get_user_schedule
+    end
   end
 
   resources :equipments do

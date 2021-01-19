@@ -1,49 +1,56 @@
-<h5>ユーザー情報</h5>
-<%= link_to '担当工程編集', edit_user_path(current_user) %>
+<div class="container">
+  <div class="row">
+    <h5 class="text-center border">担当工程</h5>
+  </div>
+  <div class="row my-1">
+    <div class="btn-group" role="group">
+      <%= link_to '担当工程登録', edit_user_path(current_user), class: "row justify-content-center btn btn-primary" %>
+    </div>
+  </div>
+</div>
+    <% @user.working_processings.each_with_index do |working, i| %>
+      <table class="table table-striped">
+        <tr>
+          <td>担当工程<%= "#{i+1}" %>： <%= working.name %></td>
+          <td><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm" %></td>
+        </tr>
+      </table>
+    <% end %>
 
-<% @user.working_processings.each_with_index do |working, i| %>
-  <table>
-    <tr>
-      <td>担当工程<%= "#{i+1}" %>： <%= working.name %></td>
-      <td><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-    </tr>
-  </table>
-<% end %>
-
-<h5>個人スケジュール</h5>
-<table>
-  <tr>
-    <th>注文番号</th>
-    <th>工程No.</th>
-    <th>工程名</th>
-    <th>所要時間</th>
-    <th>作業者</th>
-    <th>開始予定</th>
-    <th>終了予定</th>
-    <th>終了実績</th> 
-  </tr>
-<% @flows.each do |flow| %>
-  <tr>
-    <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
-    <td><%= flow.number %></td>
-    <td><%= flow.processing.name %></td>
-    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-    <% if flow.scheduled_starting_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <h5 class="text-center border">個人スケジュール</h5>
+    <table class="table table-striped">
+      <tr class="table-info">
+        <th class="col">注文番号</th>
+        <th class="col">工程No.</th>
+        <th class="col">工程名</th>
+        <th class="col">所要時間</th>
+        <th class="col">作業者</th>
+        <th class="col">開始予定</th>
+        <th class="col">終了予定</th>
+        <th class="col">終了実績</th> 
+      </tr>
+    <% @flows.each do |flow| %>
+      <tr>
+        <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td> 
+        <td><%= flow.number %></td>
+        <td><%= flow.processing.name %></td>
+        <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+        <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+        <% if flow.scheduled_starting_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+        <% if flow.scheduled_ending_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+        <% if flow.ending_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+      </tr>
     <% end %>
-    <% if flow.scheduled_ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <% if flow.ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-  </tr>
-  
-<% end %>
+    </table>
