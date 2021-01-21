@@ -1,13 +1,17 @@
-<h5>以下の内容で、登録する。</h5>
+<h5 class="text-center">以下の内容で、登録する。</h5>
 <%= form_with(model: @processing, local: true, url: processings_path ) do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :equipment_id %>
   <%= f.hidden_field :time_required %>
   <%= f.hidden_field :comment %>
-  <p>工程名:<%= @processing.name %></p>
-  <p>装置名:<%= @processing.equipment.name %></p>
-  <p>所要時間:<%= @processing.time_required.strftime('%H:%M') %></p>
-  <p>コメント:<%= @processing.comment %></p>
-  <%= f.submit  "登録する" %>
-  <%= f.submit "戻る", name: 'back' %>
+  <p class="text-center">工程名:<%= @processing.name %></p>
+  <p class="text-center">装置名:<%= @processing.equipment.name %></p>
+  <p class="text-center">所要時間:<%= @processing.time_required.strftime('%H:%M') %></p>
+  <p class="text-center">コメント:<%= @processing.comment %></p>
+  <div class="col text-center">
+    <%= f.submit  "登録する", class: "btn btn-primary" %>
+  </div>
+  <div class="col text-center mt-2">
+    <%= f.submit "戻る", name: 'back', class: "btn btn-secondary" %>
+  </div>
 <% end %>

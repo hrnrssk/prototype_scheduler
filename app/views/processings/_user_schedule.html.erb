@@ -1,53 +1,19 @@
 <% if @user != nil %>
   <h5>個人スケジュール　　作業者名: <%= @user.name %></h5>
-  <div class="overflow-auto" style="width:790px;height:150px;">
-    <table>
-      <tr>
-        <%
-=begin%>
- <th class="fixed01">注文番号</th> 
-<%
-=end%>
-        <%
-=begin%>
- <th class="fixed01">No.</th> 
-<%
-=end%>
-        <th class="fixed01">工程</th>
-        <%
-=begin%>
- <th class="fixed01">所要</th> 
-<%
-=end%>
-        <th class="fixed01">開始予定</th>
-        <th class="fixed01">終了予定</th>
+  <div class="overflow-auto" style="width:450px;height:170px;">
+    <table class="table table-sm">
+      <tr class="table-info">
+        <th class="fixed01" style="width:130px;">工程</th>
+        <th class="fixed01" style="width:140px;">開始予定</th>
+        <th class="fixed01" style="width:140px;">終了予定</th>
       </tr>
     <% @flows.each do |flow| %>
       <tr>
-        <%
-=begin%>
- <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td> 
-<%
-=end%>
-        <%
-=begin%>
- <td><%= flow.number %></td> 
-<%
-=end%>
         <% if flow.processing == nil then %>
           <td><%= "" %></td>
         <% else %>
           <td><%= flow.processing.name %></td>
         <% end %>
-        <%
-=begin%>
- <% if flow.processing == nil then %>
-          <td><%= "" %></td>
-        <% else %>
-          <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-        <% end %> 
-<%
-=end%>
         <% if flow.scheduled_starting_time == nil then %>
           <td><%= "" %></td>
         <% else %>

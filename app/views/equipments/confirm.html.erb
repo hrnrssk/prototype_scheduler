@@ -1,9 +1,13 @@
-<h5>以下の内容で、登録する。</h5>
+<h5 class="text-center">以下の内容で、登録する。</h5>
 <%= form_with(model: @equipment, local: true, url: equipments_path ) do |f| %>
   <%= f.hidden_field :name %>
   <%= f.hidden_field :comment %>
-  <p>装置名:<%= @equipment.name %></p>
-  <p>コメント:<%= @equipment.comment %></p>
-  <%= f.submit  "登録する" %>
-  <%= f.submit "戻る", name: 'back' %>
+  <p class="text-center">装置名:<%= @equipment.name %></p>
+  <p class="text-center">コメント:<%= @equipment.comment %></p>
+  <div class="col text-center">
+    <%= f.submit  "登録する", class: "btn btn-primary" %>
+  </div>
+  <div class="col text-center mt-2">
+    <%= f.submit "戻る", name: 'back', class: "btn btn-secondary" %>
+  </div>
 <% end %>

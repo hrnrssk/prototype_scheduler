@@ -11,8 +11,8 @@
       </div>
     <% end %>
   <% end %>
-  <h5 class="text-center border">試作品スケジュール作成</h5>
-  <table class="table">
+  <h5 class="text-center border">工程追加</h5>
+  <table class="table table-sm">
     <tr class="table-info">
       <th class="col">No.</th>
       <th class="col">工程名</th>
@@ -20,6 +20,7 @@
       <th class="col">開始予定</th>
       <th class="col">終了予定</th>
       <th class="col">終了実績</th>
+      <th></th>
     </tr>
 
     <tr>
@@ -36,20 +37,20 @@
 
   <div class="container-fluid">
     <div class="row">
-      <div class="col-sm-8">
-      <h5 class="mt-1">工程フロー詳細</h5>
-        <div class="overflow-auto" style="height:380px;">
-          <table>
-            <tr class="table_header">
-              <th class="fixed01 col-1">No.</th>
-              <th class="fixed01 col-1">工程名</th>
-              <th class="fixed01 col-1">所要</th>
-              <th class="fixed01 col-1">担当</th>
-              <th class="fixed01 col-2">開始</th>
-              <th class="fixed01 col-2">終了</th>
-              <th class="fixed01 col-2">実績</th>
-              <th class="fixed01 col-1"></th>
-              <th class="fixed01 col-1"></th>
+      <div class="col-7">
+        <h5 class="mt-1">予定と実績</h5>
+        <div class="overflow-auto" style="width:650px;height:360px;">
+          <table class="table table-sm">
+            <tr class="table-info">
+              <th class="fixed01">No.</th>
+              <th class="fixed01" style="width:100px;">工程名</th>
+              <th class="fixed01">所要</th>
+              <th class="fixed01">担当</th>
+              <th class="fixed01" style="width:100px;">開始</th>
+              <th class="fixed01" style="width:100px;">終了</th>
+              <th class="fixed01" style="width:100px;">実績</th>
+              <th class="fixed01"></th>
+              <th class="fixed01"></th>
             </tr>
           <% @flows.each do |flow| %>
             <tr>
@@ -84,27 +85,27 @@
               <% else %>
                 <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
               <% end %>
-              <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
-              <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+              <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id), class: "btn btn-outline-success btn-sm mt-2" %></td>
+              <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm mt-2" %></td>
             </tr>
           <% end %>
           </table>
         </div>
       </div>
 
-      <div class="col-sm-4">
-        <table>
+      <div class="col-5">
+        <table class="table table-sm">
           <tr>
             <td>
-              <div class="equipment_schedule m-1"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
+              <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
             </td>
           </tr>
         </table>
 
-        <table>
+        <table class="table table-sm">
           <tr>
             <td>
-              <div class="user_schedule m-2"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
+              <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
             </td>
           </tr>
         </table>
