@@ -4,13 +4,8 @@
 .fixed01 {
     position: sticky;
     top: 0;
-    color: #fff;
+    color: rgb(0, 0, 0);
     background: rgb(0, 94, 255);
-}
-
-.table_header{
-    vertical-align: middle;
-    border: 1px solid rgb(0, 0, 0);
 }
 
 select {
@@ -18,7 +13,7 @@ select {
 	-moz-appearance: none;
 	appearance: none;
 	margin-bottom: 20px;
-	padding: 3px 3px 3px 3px;
+	padding: 3px 40px 3px 3px;
 	font-size: 93%;
 	line-height: 1.1em;
 	border-radius: 5px;

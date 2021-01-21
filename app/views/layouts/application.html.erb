@@ -10,27 +10,27 @@
   </head>
 
   <body>
-    <% if user_signed_in? %>
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
-        <ul class="nav">
-          <li class="nav-item"><%= link_to "試作品一覧", prototypes_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "工程一覧", processings_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "装置一覧", equipments_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ユーザー情報", user_path(current_user), class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %></li>
-          <li class="nav-link">USER NAME： <%= current_user.name %></li>
-        </ul>
-      </nav>
-    <% else %>
-      <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
-        <ul class="nav">
-          <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link" %></li>
-          <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
-        </ul>
-      </nav>
+      <% if user_signed_in? %>
+          <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+            <ul class="nav">
+              <li class="nav-item"><%= link_to "試作品一覧", prototypes_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "工程一覧", processings_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "装置一覧", equipments_path, class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "ユーザー情報", user_path(current_user), class: "nav-link" %></li>
+              <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, class: "nav-link", method: :delete %></li>
+              <li class="nav-link">USER NAME： <%= current_user.name %></li>
+            </ul>
+          </nav>
+      <% else %>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff;">
+          <ul class="nav">
+            <li class="nav-item"><%= link_to "アカウント登録", new_user_registration_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link" %></li>
+          </ul>
+        </nav>
+      <% end %>
     </div>
-    <% end %>
     
     <% if notice %>
       <p class="alert alert-notice"><%= notice %></p>

@@ -28,7 +28,7 @@ class FlowsController < ApplicationController
     render :new
     else
       if @flow.save
-        redirect_to prototype_flow_path(params[:prototype_id], params[:prototype_id]), notice: "スケジュールを登録しました"
+        redirect_to new_prototype_flow_path(params[:prototype_id]), notice: "スケジュールを登録しました"
       else
         render :edit
       end
@@ -50,7 +50,7 @@ class FlowsController < ApplicationController
 
   def update
     if @flow.update(flow_params)
-      redirect_to prototype_flow_path(params[:prototype_id], params[:prototype_id]), notice: "スケジュールを編集しました"
+      redirect_to new_prototype_flow_path(params[:prototype_id]), notice: "スケジュールを編集しました"
     else
       render :edit
     end
@@ -59,7 +59,7 @@ class FlowsController < ApplicationController
   def destroy
     @flow = Flow.find(params[:id])
     @flow.destroy
-    redirect_to prototype_flow_path(params[:prototype_id], params[:prototype_id]), notice:"スケジュールを削除しました"
+    redirect_to new_prototype_flow_path(params[:prototype_id]), notice:"スケジュールを削除しました"
   end
 
   def confirm
