@@ -6,8 +6,4 @@ module FlowsHelper
       prototype_flow_path
     end
   end
-
-  # def current_prototype_id
-  #   @current_prototype_id = params[:id]
-  # end
 end

@@ -22,7 +22,6 @@
       <th class="col">終了実績</th>
       <th></th>
     </tr>
-
     <tr>
       <td class="flow_number"><%= f.text_field :number, size: "3x50" %></td>
       <td class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></td> 
@@ -35,80 +34,80 @@
   </table>
 <% end %>
 
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-7">
-        <h5 class="mt-1">予定と実績</h5>
-        <div class="overflow-auto" style="width:650px;height:360px;">
-          <table class="table table-sm">
-            <tr class="table-info">
-              <th class="fixed01">No.</th>
-              <th class="fixed01" style="width:100px;">工程名</th>
-              <th class="fixed01">所要</th>
-              <th class="fixed01">担当</th>
-              <th class="fixed01" style="width:100px;">開始</th>
-              <th class="fixed01" style="width:100px;">終了</th>
-              <th class="fixed01" style="width:100px;">実績</th>
-              <th class="fixed01"></th>
-              <th class="fixed01"></th>
-            </tr>
-          <% @flows.each do |flow| %>
-            <tr>
-              <td><%= flow.number %></td>
-              <% if flow.processing == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.processing.name %></td>
-              <% end %>
-              <% if flow.processing == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-              <% end %>
-              <% if flow.processing == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-              <% end %>
-              <% if flow.scheduled_starting_time == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
-              <% end %>
-              <% if flow.scheduled_ending_time == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-              <% end %>
-              <% if flow.ending_time == nil then %>
-                <td><%= "" %></td>
-              <% else %>
-                <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-              <% end %>
-              <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id), class: "btn btn-outline-success btn-sm mt-2" %></td>
-              <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm mt-2" %></td>
-            </tr>
-          <% end %>
-          </table>
-        </div>
-      </div>
-
-      <div class="col-5">
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-7">
+      <h5 class="mt-1">予定と実績</h5>
+      <div class="overflow-auto" style="width:650px;height:360px;">
         <table class="table table-sm">
-          <tr>
-            <td>
-              <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
-            </td>
+          <tr class="table-info">
+            <th class="fixed01">No.</th>
+            <th class="fixed01" style="width:100px;">工程名</th>
+            <th class="fixed01">所要</th>
+            <th class="fixed01">担当</th>
+            <th class="fixed01" style="width:100px;">開始</th>
+            <th class="fixed01" style="width:100px;">終了</th>
+            <th class="fixed01" style="width:100px;">実績</th>
+            <th class="fixed01"></th>
+            <th class="fixed01"></th>
           </tr>
-        </table>
-
-        <table class="table table-sm">
+        <% @flows.each do |flow| %>
           <tr>
-            <td>
-              <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
-            </td>
+            <td><%= flow.number %></td>
+            <% if flow.processing == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.processing.name %></td>
+            <% end %>
+            <% if flow.processing == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+            <% end %>
+            <% if flow.processing == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+            <% end %>
+            <% if flow.scheduled_starting_time == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <% end %>
+            <% if flow.scheduled_ending_time == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <% end %>
+            <% if flow.ending_time == nil then %>
+              <td><%= "" %></td>
+            <% else %>
+              <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+            <% end %>
+            <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id), class: "btn btn-outline-success btn-sm mt-2" %></td>
+            <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm mt-2" %></td>
           </tr>
+        <% end %>
         </table>
       </div>
     </div>
+
+    <div class="col-5">
+      <table class="table table-sm">
+        <tr>
+          <td>
+            <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
+          </td>
+        </tr>
+      </table>
+
+      <table class="table table-sm">
+        <tr>
+          <td>
+            <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>
+          </td>
+        </tr>
+      </table>
+    </div>
   </div>
+</div>

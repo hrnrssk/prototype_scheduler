@@ -3,7 +3,6 @@ RSpec.describe 'ユーザー機能', type: :system do
   describe 'ゲストユーザー登録のテスト' do
     context 'サインインした場合' do
       it 'ゲストログインできること' do
-        # new_user_registration_pathに遷移する（ユーザーの新規作成ページに遷移する）
         visit new_user_registration_path
         click_on 'ゲストログイン（閲覧用）'
         expect(page).to have_content 'ゲストユーザーとしてログインしました。'

@@ -13,21 +13,21 @@
     <%= f.submit "情報更新", class: "btn btn-primary" %>
   </div>
   <div class="row mt-3">
-  <div class="col-4 offset-4">
-  <table class="table table-borderless">
-    <tr class="table-info text-center">
-      <th>担当工程名（装置）</th>
-    </tr>
-    <%= f.fields_for :workings do |w| %>
-    <tr>
-      <td>
-        <div class="working_name row text-center">
-          <%= w.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %>
-        </div>
-      </td>
-    </tr>
-    <% end %>
-  </table>
-  </div>
+    <div class="col-4 offset-4">
+      <table class="table table-borderless">
+        <tr class="table-info text-center">
+          <th>担当工程名（装置）</th>
+        </tr>
+        <%= f.fields_for :workings do |w| %>
+        <tr>
+          <td>
+            <div class="working_name row text-center">
+              <%= w.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %>
+            </div>
+          </td>
+        </tr>
+        <% end %>
+      </table>
+    </div>
   </div>
 <% end %>
