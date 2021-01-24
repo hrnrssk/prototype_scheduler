@@ -14,4 +14,13 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit :account_update, keys: added_attrs
     devise_parameter_sanitizer.permit :sign_in, keys: added_attrs
   end
+
+  #ログイン後のリダイレクト先
+  def after_sign_in_path_for(resource)
+    prototypes_path
+  end 
+  #ログアウト後のリダイレクト先
+  def after_sign_out_path_for(resource)
+    new_user_registration_path
+  end 
 end

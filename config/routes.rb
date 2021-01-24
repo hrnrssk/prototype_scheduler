@@ -25,10 +25,6 @@ Rails.application.routes.draw do
     end
   end
 
-  # resources :flows do
-  #   post :confirm, on: :collection
-  # end
-
   resources :processings do
     resource :workings, only: [:create, :destroy]
     post :confirm, on: :collection
