@@ -48,14 +48,12 @@ class ProcessingsController < ApplicationController
   end
 
   def get_equipment_schedule
-    # binding.pry
     @processing = Processing.find(params[:processing_id])
     @flows = Flow.all.where(processing_id: params[:processing_id])
     render partial: 'equipment_schedule', locals: {processing_id: params[:processing_id]}
   end
 
   def get_user_schedule
-    # binding.pry
     @user = User.find(params[:user_id])
     @flows = Flow.all.where(user_id: @user.id)
     render partial: 'user_schedule', locals: {user_id: params[:user_id]}

@@ -12,55 +12,55 @@
     <% end %>
   <% end %>
 
-<h5 class="text-center border border-primary">工程フロー詳細</h5>
-<table>
-  <tr>
-    <th>工程No.</th>
-    <th>工程名</th>
-    <th>所要時間</th>
-    <th>作業者</th>
-    <th>開始予定</th>
-    <th>終了予定</th>
-    <th>終了実績</th>
-  </tr>
-<% @flows.each do |flow| %>
-  <tr>
-    <td><%= flow.number %></td>
-    <% if flow.processing == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.processing.name %></td>
+  <h5 class="text-center border border-primary">工程フロー詳細</h5>
+  <table>
+    <tr>
+      <th>工程No.</th>
+      <th>工程名</th>
+      <th>所要時間</th>
+      <th>作業者</th>
+      <th>開始予定</th>
+      <th>終了予定</th>
+      <th>終了実績</th>
+    </tr>
+    <% @flows.each do |flow| %>
+      <tr>
+        <td><%= flow.number %></td>
+        <% if flow.processing == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.processing.name %></td>
+        <% end %>
+        <% if flow.processing == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+        <% end %>
+        <% if flow.processing == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+        <% end %>
+        <% if flow.scheduled_starting_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+        <% if flow.scheduled_ending_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+        <% if flow.ending_time == nil then %>
+          <td><%= "" %></td>
+        <% else %>
+          <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+        <% end %>
+        <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
+        <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
+      </tr>
     <% end %>
-    <% if flow.processing == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-    <% end %>
-    <% if flow.processing == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-    <% end %>
-    <% if flow.scheduled_starting_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <% if flow.scheduled_ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <% if flow.ending_time == nil then %>
-      <td><%= "" %></td>
-    <% else %>
-      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-    <% end %>
-    <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id) %></td>
-    <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' } %></td>
-  </tr>
-<% end %>
-</table>
+  </table>
 <% end %>
 
 

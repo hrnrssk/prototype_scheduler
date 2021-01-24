@@ -1,22 +1,25 @@
 Rails.application.routes.draw do
 
-  # devise_for :users, controllers: {
-  #   sessions: 'users/sessions'
-  # }
-
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+
+  # devise_for :users do
+  #   root "users/registrations#new"
+  # end
 
   resources :users, :only => [:new, :create, :show, :edit, :update, :destroy] do
     get :workings, on: :collection
   end
 
   devise_scope :user do
+    root :to => 'users/registrations#new'
     post 'users/guest_sign_in', to: 'users/sessions#new_guest'
   end
 
-  root 'prototypes#index'
+  # root to: 'prototypes#index'
+  # root 'users/registrations#new'
+
 
   resources :prototypes do
     post :confirm, on: :collection

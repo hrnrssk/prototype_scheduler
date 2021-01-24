@@ -1,6 +1,5 @@
 class WorkingsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-  # before_action :set_working, only: [:show, :edit, :update, :destroy]
 
   def new
     @working = Working.new
@@ -20,9 +19,4 @@ class WorkingsController < ApplicationController
   def get_users
     render partial: 'worker', locals: {processing_id: params[:processing_id]}
   end
-
-  # private
-  # def set_working
-  #   @working = Working.find(params[:working_id])
-  # end
 end

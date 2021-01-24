@@ -20,44 +20,42 @@
   </tr>
 </table>
 
-
-
-    <h5 class="text-center border">装置スケジュール</h5>
-    <table class="table table-striped">
-      <tr class="table-info">
-        <th class="col">注文番号</th>
-        <th class="col">工程No.</th>
-        <th class="col">工程名</th>
-        <th class="col">所要時間</th>
-        <th class="col">作業者</th>
-        <th class="col">開始予定</th>
-        <th class="col">終了予定</th>
-        <th class="col">終了実績</th> 
-      </tr>
-    <% @flows.each do |flow| %>
-      <tr>
-        <td><%= link_to flow.prototype.order_number, new_prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
-        <td><%= flow.number %></td>
-        <td><%= flow.processing.name %></td>
-        <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-        <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
-        <% if flow.scheduled_starting_time == nil then %>
-          <td><%= "" %></td>
-        <% else %>
-          <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <% end %>
-        <% if flow.scheduled_ending_time == nil then %>
-          <td><%= "" %></td>
-        <% else %>
-          <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <% end %>
-        <% if flow.ending_time == nil then %>
-          <td><%= "" %></td>
-        <% else %>
-          <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
-        <% end %>
-      </tr>
+<h5 class="text-center border">装置スケジュール</h5>
+<table class="table table-striped">
+  <tr class="table-info">
+    <th class="col">注文番号</th>
+    <th class="col">工程No.</th>
+    <th class="col">工程名</th>
+    <th class="col">所要時間</th>
+    <th class="col">作業者</th>
+    <th class="col">開始予定</th>
+    <th class="col">終了予定</th>
+    <th class="col">終了実績</th> 
+  </tr>
+<% @flows.each do |flow| %>
+  <tr>
+    <td><%= link_to flow.prototype.order_number, new_prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
+    <td><%= flow.number %></td>
+    <td><%= flow.processing.name %></td>
+    <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
+    <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+    <% if flow.scheduled_starting_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_starting_time.strftime("%Y-%m-%d %H:%M") %></td>
     <% end %>
-    </div>
-    </table>
+    <% if flow.scheduled_ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.scheduled_ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+    <% if flow.ending_time == nil then %>
+      <td><%= "" %></td>
+    <% else %>
+      <td><%= flow.ending_time.strftime("%Y-%m-%d %H:%M") %></td>
+    <% end %>
+  </tr>
+<% end %>
+</div>
+</table>
 
