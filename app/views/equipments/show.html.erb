@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <h5 class="text-center border">装置詳細画面</h5>
+    <h5 class="text-center border border-primary">装置詳細画面</h5>
   </div>
 </div>
 <table class="table table-striped">
@@ -36,7 +36,7 @@
       </tr>
     <% @flows.each do |flow| %>
       <tr>
-        <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
+        <td><%= link_to flow.prototype.order_number, new_prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td>
         <td><%= flow.number %></td>
         <td><%= flow.processing.name %></td>
         <td><%= flow.processing.time_required.strftime('%H:%M') %></td>

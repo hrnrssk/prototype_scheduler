@@ -30,7 +30,8 @@ class FlowsController < ApplicationController
       if @flow.save
         redirect_to new_prototype_flow_path(params[:prototype_id]), notice: "スケジュールを登録しました"
       else
-        render :edit
+        binding.pry
+        render :new
       end
     end
   end
