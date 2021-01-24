@@ -45,6 +45,15 @@ gem 'pry-rails'
 
 gem 'faker'
 
+# 開発環境で環境変数を操作するのに必要
+gem 'dotenv-rails'
+
+# アプリケーションサーバのunicorn
+gem 'unicorn'
+
+# デプロイ時に必要
+gem 'mini_racer', platforms: :ruby
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -53,6 +62,12 @@ group :development, :test do
   gem 'spring-commands-rspec'
   gem 'factory_bot_rails'
   gem 'launchy'
+  # capistranoのツール一式
+  gem 'capistrano', '3.6.0'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-rbenv'
+  gem 'capistrano3-unicorn'
 end
 
 group :development do
