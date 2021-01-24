@@ -80,7 +80,11 @@
           <div class="actions mt-2">
             <%= f.submit t('.sign_up'), class: "btn btn-primary" %>
           </div>
-        <%= link_to '受信メール確認', letter_opener_web_path, class: "btn btn-info mt-2 text-white" %>
+        <%
+=begin%>
+ <%= link_to '受信メール確認', letter_opener_web_path, class: "btn btn-info mt-2 text-white" %> 
+<%
+=end%>
         <% end %>
         <div class="mt-2">
           <%= render "devise/shared/links" %>
