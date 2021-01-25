@@ -1,6 +1,34 @@
 ---
 ja:
   activerecord:
+    models:
+      prototype: 試作品
+    attributes:
+      prototype:
+        order_number: 注文番号
+        customer: 得意先
+        name: 品名
+        delivery_date: 納期
+    models:
+      processing: 工程
+    attributes:
+      processing:
+        name: 工程名
+        equipment: 装置名
+        time_required: 所要時間
+        comment: コメント
+    models:
+      equipment: 装置
+    attributes:
+      equipment:
+        name: 装置名
+        comment: コメント
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: ユーザー名
+        workings_processings: 追加工程
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
