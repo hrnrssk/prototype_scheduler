@@ -29,6 +29,13 @@ ja:
       user:
         name: ユーザー名
         workings_processings: 追加工程
+    models:
+      flow: 工程フロー
+    attributes:
+      flow:
+        scheduled_starting_time: 開始予定
+        scheduled_ending_time: 終了予定
+        ending_time: 終了予定
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

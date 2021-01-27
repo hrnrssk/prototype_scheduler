@@ -15,13 +15,13 @@ class FlowsController < ApplicationController
   def create
     @flow = Flow.new(flow_params)
     @flow.prototype_id = params[:prototype_id]
+    @flows = Flow.where(prototype_id: params[:prototype_id]).order(number: :ASC)
     if params[:back]
     render :new
     else
       if @flow.save
         redirect_to new_prototype_flow_path(params[:prototype_id]), notice: "スケジュールを登録しました"
       else
-        binding.pry
         render :new
       end
     end

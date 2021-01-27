@@ -1,4 +1,4 @@
-<%= form_with(model: @flow, url: {action: 'create'}, method: :post ) do |f| %>
+<%= form_with(model: @flow, url: {action: 'create'}, method: :post, local: true ) do |f| %>
   <% if @flow.present?%>
     <% if @flow.errors.any? %>
       <div id="error_explanation">
@@ -24,7 +24,7 @@
     </tr>
     <tr>
       <td class="flow_number"><%= f.text_field :number, size: "3x50" %></td>
-      <td class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></td> 
+      <td class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択" %></td>
       <td class="worker"><%= render partial: 'worker', locals: {processing_id: Processing.first.id} %></td>
       <td class="scheduled_starting_time"><%= f.datetime_field :scheduled_starting_time, class: 'form-control-sm' %></td>
       <td class="scheduled_ending_time"><%= f.datetime_field :scheduled_ending_time, class: 'form-control-sm' %></td>
