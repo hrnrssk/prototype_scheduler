@@ -35,7 +35,7 @@ ja:
       flow:
         scheduled_starting_time: 開始予定
         scheduled_ending_time: 終了予定
-        ending_time: 終了予定
+        ending_time: 終了実績
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
