@@ -14,7 +14,7 @@ end
     order_number = Faker::Number.leading_zero_number(digits: 8)
     customer = Faker::Company.name
     name = Faker::Food.fruits
-    delivery_date = Faker::Date.between(from: 2.days.ago, to: 2.month.from_now)
+    delivery_date = Faker::Date.between(from: 1.days.after, to: 2.month.from_now)
     Prototype.create!(order_number: order_number,
                 customer: customer,
                 name: name,
