@@ -10,17 +10,18 @@ class Flow < ApplicationRecord
 
   def scheduled_start_date
     return if scheduled_starting_time.blank?
-    errors.add(:scheduled_starting_time, "は今日以降の日付を選択してください") if scheduled_starting_time < Date.today
+    errors.add(:scheduled_starting_time, "は本日以降の日付を選択してください") if scheduled_starting_time < Date.today
   end
 
   def scheduled_end_date
     return if scheduled_ending_time.blank?
-    errors.add(:scheduled_ending_time, "は今日以降の日付を選択してください") if scheduled_ending_time < Date.today
+    errors.add(:scheduled_ending_time, "は本日以降の日付を選択してください") if scheduled_ending_time < Date.today
+    errors.add(:scheduled_ending_time, "は開始予定以降の日付を選択してください") if scheduled_ending_time < scheduled_starting_time
   end
 
   def end_date
     return if ending_time.blank?
-    errors.add(:ending_time, "は今日以前の日付を選択してください") if ending_time > Date.today
+    errors.add(:ending_time, "は本日以前の日付を選択してください") if ending_time > Date.today
   end
 
 end

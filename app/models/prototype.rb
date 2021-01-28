@@ -8,6 +8,7 @@ class Prototype < ApplicationRecord
   has_many :flow_processings, through: :flows, source: :processing
 
   def delivery_date_before_today
+    return if delivery_date.blank?
     errors.add(:delivery_date, "は今日以降の日付を選択してください") if delivery_date < Date.today
   end
 end

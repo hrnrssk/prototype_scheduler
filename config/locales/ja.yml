@@ -2,40 +2,33 @@
 ja:
   activerecord:
     models:
-      prototype: 試作品
+      prototype: '試作品'
+      processing: '工程'
+      equipment: '装置'
+      user: 'ユーザー'
+      flow: '工程フロー'
     attributes:
       prototype:
-        order_number: 注文番号
-        customer: 得意先
-        name: 品名
-        delivery_date: 納期
-    models:
-      processing: 工程
-    attributes:
+        order_number: '注文番号'
+        customer: '得意先'
+        name: '品名'
+        delivery_date: '納期'
       processing:
-        name: 工程名
-        equipment: 装置名
-        time_required: 所要時間
-        comment: コメント
-    models:
-      equipment: 装置
-    attributes:
+        name: '工程名'
+        equipment_id: '装置名'
+        time_required: '所要時間'
+        comment: 'コメント'
+        equipment: '装置名'
       equipment:
-        name: 装置名
-        comment: コメント
-    models:
-      user: ユーザー
-    attributes:
+        name: '装置名'
+        comment: 'コメント'
       user:
-        name: ユーザー名
-        workings_processings: 追加工程
-    models:
-      flow: 工程フロー
-    attributes:
+        name: 'ユーザー名'
+        workings_processings: '追加工程'
       flow:
-        scheduled_starting_time: 開始予定
-        scheduled_ending_time: 終了予定
-        ending_time: 終了実績
+        scheduled_starting_time: '開始予定'
+        scheduled_ending_time: '終了予定'
+        ending_time: '終了実績'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
