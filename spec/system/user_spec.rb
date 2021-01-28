@@ -5,14 +5,14 @@ RSpec.describe 'ユーザー機能', type: :system do
       it 'ゲストログインできること' do
         visit new_user_registration_path
         click_on 'ゲストログイン（閲覧用）'
-        expect(page).to have_content 'ゲストユーザーとしてログインしました。'
+        expect(page).to have_content 'guest'
       end
     end
     context 'ユーザー情報ページに飛べること' do
       it 'ユーザー情報画面に遷移すること' do
         visit new_user_registration_path
         click_on 'ゲストログイン（閲覧用）'
-        click_on 'ユーザー情報'
+        click_on 'マイページ'
         expect(page).to have_content '個人スケジュール'
       end
     end

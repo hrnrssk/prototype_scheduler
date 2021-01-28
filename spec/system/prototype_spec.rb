@@ -13,8 +13,8 @@ RSpec.describe '試作品機能', type: :system do
         fill_in 'prototype_order_number', with: '00000002'
         fill_in 'prototype_customer', with: 'DIC'
         fill_in 'prototype_name', with: 'Diver'
-        fill_in 'prototype_delivery_date', with: '2021/02/28'
-        click_on '情報更新'
+        fill_in 'prototype_delivery_date', with: '2022/02/28'
+        click_on '登録する'
         click_on '登録する'
         expect(page).to have_content '試作品を登録しました'
       end
@@ -24,7 +24,7 @@ RSpec.describe '試作品機能', type: :system do
         visit root_path
         all('tr td')[7].click_on '編集'
         fill_in 'prototype_delivery_date', with: '2021/02/28'
-        click_on '情報更新'
+        click_on '登録する'
         expect(page).to have_content '試作品情報を編集しました'
       end
     end

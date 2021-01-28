@@ -10,9 +10,9 @@ RSpec.describe '装置機能', type: :system do
       it '装置を登録できること' do
         visit equipments_path
         click_on '追加登録'
-        fill_in 'equipment_name', with: 'テスト機'
+        fill_in 'equipment_name', with: 'TEST機'
         fill_in 'equipment_comment', with: 'テストする装置'
-        click_on '情報更新'
+        click_on '登録する'
         click_on '登録する'
         expect(page).to have_content '装置を登録しました'
       end
@@ -22,7 +22,7 @@ RSpec.describe '装置機能', type: :system do
         visit equipments_path
         all('tr td')[3].click_on '編集'
         fill_in 'equipment_comment', with: 'TESTする装置'
-        click_on '情報更新'
+        click_on '登録する'
         expect(page).to have_content '装置情報を編集しました'
       end
     end

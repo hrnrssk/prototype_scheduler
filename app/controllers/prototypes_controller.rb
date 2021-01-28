@@ -47,7 +47,6 @@ class PrototypesController < ApplicationController
 
   def confirm
     @prototype = Prototype.new(prototype_params)
-    binding.pry
     render :new if @prototype.invalid?
   end
 

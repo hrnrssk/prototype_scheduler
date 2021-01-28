@@ -11,12 +11,12 @@ RSpec.describe '工程機能', type: :system do
       it '工程を登録できること' do
         visit processings_path
         click_on '工程登録'
-        fill_in 'processing_name', with: 'テスト工程(テスト機)'
+        fill_in 'processing_name', with: 'テスト工程2(テスト機)'
         select 'テスト機', from: 'processing[equipment_id]'
         select '01', from: 'processing[time_required(4i)]'
         select '30', from: 'processing[time_required(5i)]'
         fill_in 'processing_comment', with: 'テストする工程'
-        click_on '情報更新'
+        click_on '登録する'
         click_on '登録する'
         expect(page).to have_content '工程を登録しました'
       end
@@ -24,9 +24,10 @@ RSpec.describe '工程機能', type: :system do
     context '工程情報を編集する場合' do
       it '更新されること' do
         visit processings_path
-        all('tr td')[6].click_on '予定と実績'
+        all('tr td')[4].click_on '編集'
+        sleep 0.2
         fill_in 'processing_comment', with: 'TESTする工程'
-        click_on '情報更新'
+        click_on '登録する'
         expect(page).to have_content '工程情報を編集しました'
       end
     end
