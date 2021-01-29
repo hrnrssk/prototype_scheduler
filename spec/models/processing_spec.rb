@@ -42,7 +42,7 @@ RSpec.describe Processing, type: :model do
     processing.valid?
     expect(processing.errors[:name]).to include("は20文字以内で入力してください")
   end
-    # コメントが21文字以上なら無効な状態であること
+  # コメントが21文字以上なら無効な状態であること
   it "is invalid with comment is 21 or more characters" do
     processing = Processing.new(comment: 'a' * 21)
     processing.valid?
