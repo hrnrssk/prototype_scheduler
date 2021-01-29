@@ -26,6 +26,9 @@ ja:
         name: 'ユーザー名'
         workings_processings: '追加工程'
       flow:
+        number: 'No.'
+        processing_id: '工程名'
+        user_id: '作業者'
         scheduled_starting_time: '開始予定'
         scheduled_ending_time: '終了予定'
         ending_time: '終了実績'

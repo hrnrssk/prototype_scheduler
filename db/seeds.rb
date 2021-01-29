@@ -1,6 +1,6 @@
-5.times do |n|
-    name = Faker::Name.last_name
-    email = Faker::Internet.email
+10.times do |n|
+    name = Faker::Name.unique.last_name
+    email = Faker::Internet.unique.email
     password = "password"
     User.create!(name: name,
                  email: email,

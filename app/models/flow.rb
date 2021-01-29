@@ -1,12 +1,12 @@
 class Flow < ApplicationRecord
   validates :number, numericality: { only_integer: true }, presence: true
+  validates :processing_id, presence: true
+  validates :user_id, presence: true
   validate :scheduled_start_date
   validate :scheduled_end_date
   validate :end_date
   belongs_to :prototype, optional: true
   belongs_to :processing, optional: true
-  has_many :assignings, dependent: :destroy
-  has_many :assigning_users, through: :assignings, source: :user
 
   def scheduled_start_date
     return if scheduled_starting_time.blank?
