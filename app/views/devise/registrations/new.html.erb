@@ -52,26 +52,26 @@
     </body>
     <div class="col-4 mt-3">
       <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, method: :post, class: "guestlogin btn btn-success btn-lg mx-auto" %>
-      <div class="row offset-1">
-        <h3 class="mt-3"><%= t('.sign_up') %></h3>
+      <div class="row">
+        <h3 class="text-center mt-5"><%= t('.sign_up') %></h3>
 
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "devise/shared/error_messages", resource: resource %>
 
-          <div class="field mt-1 mx-auto">
+          <div class="field text-center mt-1 mx-auto">
             <%= f.label :email %><br />
             <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
           </div>
-          <div class="col small text-muted">
+          <div class="col text-center small text-muted">
             *メールの受信確認はありません
           </div>
 
-          <div class="field mt-3">
+          <div class="field text-center mt-3">
             <%= f.label :name %><br />
             <%= f.text_field :name, class: "form-control-sm border-1", size: 19 %>
           </div>
 
-          <div class="field mt-3">
+          <div class="field text-center mt-3">
             <%= f.label :password %>
             <% if @minimum_password_length %>
             <em><%= t('devise.shared.minimum_password_length', count: @minimum_password_length) %></em>
@@ -79,18 +79,22 @@
             <%= f.password_field :password, autocomplete: "new-password" %>
           </div>
 
-          <div class="field mt-3">
+          <div class="field text-center mt-3">
             <%= f.label :password_confirmation %><br />
             <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
           </div>
 
-          <div class="actions mt-3">
+          <div class="actions text-center mt-3">
             <%= f.submit t('.sign_up'), class: "btn btn-primary" %>
           </div>
         <% end %>
-        <div class="mt-3">
+        <%
+=begin%>
+ <div class="mt-3">
           <%= render "devise/shared/links" %>
-        </div>
+        </div> 
+<%
+=end%>
       </div>
     </div>
   </div>
