@@ -37,7 +37,7 @@ class FlowsController < ApplicationController
   end
 
   def update
-    if @flow.update(flow_params)
+    if @flow.update(flow_update_params)
       redirect_to new_prototype_flow_path(params[:prototype_id]), notice: "スケジュールを編集しました"
     else
       render :edit
@@ -57,8 +57,11 @@ class FlowsController < ApplicationController
 
   private
   def flow_params
+    params.require(:flow).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id)
+  end
+
+  def flow_update_params
     params.require(:flow).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id) && params.require(:processing).permit(:user_id )
-    # params.require(:processing).permit(:user_id)
   end
 
   def set_flow
