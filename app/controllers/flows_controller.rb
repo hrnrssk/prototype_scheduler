@@ -61,7 +61,7 @@ class FlowsController < ApplicationController
   end
 
   def flow_update_params
-    params.require(:flow).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id) && params.require(:processing).permit(:user_id )
+    params.require(:flow).permit(:prototype_id, :processing_id, :scheduled_starting_time, :scheduled_ending_time, :ending_time, :number, :user_id)
   end
 
   def set_flow
