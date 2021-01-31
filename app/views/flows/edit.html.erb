@@ -27,7 +27,7 @@
     <tr>
       <td class="flow_number"><%= f.text_field :number, size: "3x50" %></td>
       <td class="processing_name"><%= f.collection_select :processing_id, Processing.all, :id, :name, :prompt => "工程を選択", class: "selectpicker" %></td> 
-      <td class="worker"><%= render partial: 'worker', locals: {processing_id: Processing.first.id} %></td>
+      <td class="worker"><%= render partial: 'worker', locals: {processing_id: @flow.processing_id} %></td>
       <td class="scheduled_starting_time"><%= f.datetime_field :scheduled_starting_time, class: 'form-control-sm' %></td>
       <td class="scheduled_ending_time"><%= f.datetime_field :scheduled_ending_time, class: 'form-control-sm' %></td>
       <td class="ending_time"><%= f.datetime_field :ending_time, class: 'form-control-sm' %></td>
