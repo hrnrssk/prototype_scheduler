@@ -32,6 +32,8 @@ ja:
         scheduled_starting_time: '開始予定'
         scheduled_ending_time: '終了予定'
         ending_time: '終了実績'
+      workings:
+        processing: '追加する担当工程'
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'

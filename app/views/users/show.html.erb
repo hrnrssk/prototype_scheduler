@@ -7,19 +7,21 @@
       <%= link_to '追加登録', edit_user_path(current_user), class: "row justify-content-center btn btn-primary" %>
     </div>
   </div>
+  <div class="row">
+    <table class="table table-sm">
+      <% @user.working_processings.each_with_index do |working, i| %>
+        <tr>
+          <td class="col-3"></td>
+          <td class="col-3">担当工程<%= "#{i+1}" %>： <%= working.name %></td>
+          <td class="col-3"><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
 </div>
-<% @user.working_processings.each_with_index do |working, i| %>
-  <table class="table table-striped">
-    <div class="row">
-    <tr>
-      <td class="col-10">担当工程<%= "#{i+1}" %>： <%= working.name %></td>
-      <td class="col-2"><%= link_to '削除',working_path, method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm" %></td>
-    </tr>
-    </div>
-  </table>
-<% end %>
 
-<h5 class="text-center border">個人スケジュール</h5>
+
+<h5 class="text-center border border-primary mt-4">個人スケジュール</h5>
 <table class="table table-striped">
   <tr class="table-info">
     <th class="col">注文番号</th>
