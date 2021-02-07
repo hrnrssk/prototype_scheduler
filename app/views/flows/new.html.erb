@@ -44,7 +44,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-7">
-      <h5 class="mt-1">予定と実績</h5>
+      <h5 class="mt-1">予定と実績&emsp;&emsp;注文番号：<%= @prototype.order_number %></h5>
       <div class="overflow-auto" style="width:650px;height:360px;">
         <table class="table table-hover table-sm">
           <tr class="table-info">
@@ -100,7 +100,7 @@
     </div>
 
     <div class="col-5">
-      <table class="table table-sm">
+      <table class="table table-sm table-borderless">
         <tr>
           <td>
             <div class="equipment_schedule"><%= render partial: 'equipment_schedule', locals: {processing_id: Processing.first.id} %></div>
@@ -108,7 +108,7 @@
         </tr>
       </table>
 
-      <table class="table table-sm">
+      <table class="table table-sm table-borderless">
         <tr>
           <td>
             <div class="user_schedule"><%= render partial: 'user_schedule', locals: {user_id: User.first.id} %></div>

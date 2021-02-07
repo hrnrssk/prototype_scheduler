@@ -33,7 +33,7 @@
   </tr>
   <% @flows.each do |flow| %>
     <tr>
-      <td><%= link_to flow.prototype.order_number, prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td> 
+      <td><%= link_to flow.prototype.order_number, new_prototype_flow_path(flow.prototype_id, flow.prototype_id) %></td> 
       <td><%= flow.number %></td>
       <td><%= flow.processing.name %></td>
       <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
