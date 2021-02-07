@@ -10,6 +10,13 @@
         </ul>
       </div>
     <% end %>
+    <% if flash[:error].present? %>
+      <ul class="errors">
+      <% flash[:error].each do |e| %>
+        <li><%= e %></li>
+      <% end %>
+      </ul>
+    <% end %>
   <% end %>
   <h5 class="text-center border border-primary">工程追加</h5>
   <table class="table table-sm">
