@@ -10,9 +10,9 @@ class WorkingsController < ApplicationController
   end
 
   def destroy
-    @working = Working.find_by(user_id: current_user.id)
+    @working = Working.find_by(id: params[:id])
     @working.destroy
-    redirect_to user_path(params[:id]), notice:"担当工程を削除しました"
+    redirect_to user_path(current_user.id), notice:"担当工程を削除しました"
   end
 
   # Ajax処理を行う処理
