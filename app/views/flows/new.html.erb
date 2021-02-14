@@ -74,7 +74,13 @@
             <% if flow.processing == nil then %>
               <td><%= "" %></td>
             <% else %>
-              <td><%= flow.processing.working_users.find(flow.user_id).name %></td>
+<% binding.pry %>
+              <%
+=begin%>
+ <td><%= flow.processing.working_users.find(flow.user_id).name %></td> 
+<%
+=end%>
+              <td><%= User.find(flow.user_id).name %></td>
             <% end %>
             <% if flow.scheduled_starting_time == nil then %>
               <td><%= "" %></td>
@@ -94,6 +100,7 @@
             <td><%= link_to '編集', edit_prototype_flow_path(params[:prototype_id], flow.id), class: "btn btn-outline-success btn-sm mt-2" %></td>
             <td><%= link_to '削除', prototype_flow_path(params[:prototype_id], flow.id), method: :delete, data: { confirm: '本当に削除していいですか？' }, class: "btn btn-outline-danger btn-sm mt-2" %></td>
           </tr>
+<% binding.pry %>
         <% end %>
         </table>
       </div>
