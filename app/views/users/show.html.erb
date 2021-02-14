@@ -39,7 +39,6 @@
       <td><%= flow.number %></td>
       <td><%= flow.processing.name %></td>
       <td><%= flow.processing.time_required.strftime('%H:%M') %></td>
-<% binding.pry %> 
       <%
 =begin%>
  <td><%= flow.processing.working_users.find(flow.user_id).name %></td> 
